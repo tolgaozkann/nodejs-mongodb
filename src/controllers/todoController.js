@@ -4,11 +4,17 @@ const todoAdd = async (req,res) => {
     console.log(req.body);
 
     try {
-        const todoAdd = new todo(req.body);
+        console.log("here")
+        let todoAddModel = new todo();
+        console.log("here")
+        todoAddModel.name = req.body.name;
+        todoAddModel.description = req.body.description;
+        
+        console.log(todoAddModel);
 
-        await todoAdd.save()
+        await todoAddModel.save()
             .then(()=>{
-                return res.status(201).json(todoAdd)
+                return res.status(201).json(todoAddModel)
             })
             .catch((err)=>{
                 return res.status(400).json({
