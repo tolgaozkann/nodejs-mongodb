@@ -3,9 +3,9 @@ const todoController = require("../controllers/todoController");
 
 router.post("/todo",todoController.todoAdd)
 
-router.get("/todo",todoController.todoGetAll)
+router.get("/todos",todoController.todoGetAll)
 
-router.put("/todo/:id",todoController.todoUpdate)
+router.put("/todos/:id",todoController.todoUpdate)
 
 router.delete("/todo/:id",todoController.todoDelete)
 
