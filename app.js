@@ -45,7 +45,7 @@ let options = {
         }
     },
     basedir : __dirname,
-    files: ['./routers/**/*.js']
+    files: ['./controllers/*.js']
 }
 
 const ExpressSwaggerFn = ExpressSwaggerFnGenerator(app);

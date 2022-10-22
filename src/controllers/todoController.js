@@ -3,10 +3,10 @@
 
 const todo = require("../models/todoModel");
 /**
- * @typedef Success
- * @property {integer} status.required - Successful req's response code- Status Code - eg:200
- * @property {bool} success.required - Successful - Status Code - eg:true
- * @property {Array} data.required - Successful - Status Code - eg:true
+ * @typedef Error
+ * @property {integer} status.required - Error req's response code- Status Code - eg:200
+ * @property {bool} success.required - Error - Status Code - eg:true
+ * @property {string} message.required - Successful - Status Code - eg:true
  */
 const todoAdd = async (req,res) => {
     console.log(req.body);
