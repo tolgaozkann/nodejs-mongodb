@@ -38,7 +38,6 @@ const todoAdd = async (req,res) => {
     }
 }
 
-
 const todoGetAll = async (req,res) =>{
     try {
         const todoGetAll = await todo.find({});
@@ -54,7 +53,80 @@ const todoGetAll = async (req,res) =>{
     }
 }
 
+const todoDelete = async (req,res) => {
+    const {id} = req.params
+    try {
+        const todoModel = await todo.findByIdAndDelete(id,req.body);
+        if(todoModel){
+            return res.status(200).json({
+                success : true,
+                message : "Record deleted succesfully"
+            })
+        }
+        else return res.status(400).json({
+            success : false,
+            message : `Error when deleting the record`
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success : false,
+            message : `Error when deleting the record error: ${error}`
+        })
+    }
+}
+
+const todoUpdate = async (req,res) => {
+    const {id} = req.params;
+    try {
+        const todoUpdate = await todo.findByIdAndUpdate(id,req.body)
+
+        if(todoUpdate){
+            return res.status(200).json({
+                success : true,
+                message : "Updated succesfully"
+            })
+        }
+        else return res.status(400).json({
+            success :false,
+            message :"Error when updating the record"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success : false,
+            message : `Error when updating the record error: ${error}`
+        })
+    }
+
+}
+
+const todoGetById = async (req,res) =>  {
+    const {id} = req.params;
+
+    try{
+        const todoObject = await todo.findById(id);
+
+        if(todoObject){
+            return res.status(200).json({
+                success: true,
+                data : todoObject
+            })
+        }
+        else return res.status(400).json({
+            success: false,
+            message :"Record could not be found"
+        })
+    }catch(error){
+        return res.status(500).json({
+            success : false,
+            message : "Error when getting data from database"
+        })
+    }
+}
+
 module.exports = {
     todoAdd,
-    todoGetAll
+    todoGetAll,
+    todoDelete,
+    todoUpdate,
+    todoGetById
 };
